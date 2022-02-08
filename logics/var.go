@@ -1,26 +1,26 @@
 package logics
 
-type Coordinates struct {
+type VarCoordinates struct {
 	x float64
 	y float64
 }
 
-type RGB struct {
+type VarRGB struct {
 	R int
 	G int
 	B int
 }
 
-type TextCfg struct {
+type VarTextCfg struct {
 	Alignment  string
 	Text       string
 	FontFamily string
 	FontStyle  string
 	FontSize   float64
 	Margin     float64
-	Color      RGB
+	Color      VarRGB
 }
 
-type AlignmentCfg struct {
+type VarAlignmentCfg struct {
 	Margin float64
 }

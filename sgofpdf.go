@@ -2,6 +2,8 @@ package sgofpdf
 
 import (
 	"fmt"
+	"os"
+	"path"
 
 	"github.com/jung-kurt/gofpdf"
 	"github.com/kfahmi/simply_gofpdf/logics"
@@ -20,6 +22,8 @@ type Init struct {
 //start docs init function sgofpdf
 func (init *Init) InitSPDFDoc() error {
 	fmt.Println("initiate InitSPDFDoc()")
+	rootdir, _ := os.Getwd()
+	init.FontPath = path.Join(rootdir, "font")
 	init.PdfObj = gofpdf.NewCustom(&gofpdf.InitType{
 		OrientationStr: init.OrientationStr,
 		UnitStr:        init.UnitStr,

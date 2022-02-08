@@ -4,9 +4,9 @@ package logics
 type Alignment struct {
 }
 type IAlignment interface {
-	Center(data interface{}) (Coordinates, error)
-	Left(data interface{}) (Coordinates, error)
-	Right(data interface{}) (Coordinates, error)
+	Center(data interface{}) (VarCoordinates, error)
+	Left(data interface{}) (VarCoordinates, error)
+	Right(data interface{}) (VarCoordinates, error)
 }
 
 func InitAlignment() *Alignment {
@@ -14,24 +14,24 @@ func InitAlignment() *Alignment {
 	return &service
 }
 
-func (service *Alignment) Center(data interface{}) (Coordinates, error) {
-	coord := Coordinates{
+func (service *Alignment) Center(data interface{}) (VarCoordinates, error) {
+	coord := VarCoordinates{
 		x: 10,
 		y: 10,
 	}
 	return coord, nil
 }
 
-func (service *Alignment) Left(data interface{}) (Coordinates, error) {
-	coord := Coordinates{
+func (service *Alignment) Left(data interface{}) (VarCoordinates, error) {
+	coord := VarCoordinates{
 		x: 10,
 		y: 10,
 	}
 	return coord, nil
 }
 
-func (service *Alignment) Right(data interface{}) (Coordinates, error) {
-	coord := Coordinates{
+func (service *Alignment) Right(data interface{}) (VarCoordinates, error) {
+	coord := VarCoordinates{
 		x: 10,
 		y: 10,
 	}

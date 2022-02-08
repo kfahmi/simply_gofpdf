@@ -22,10 +22,10 @@ func InitSFPDFText(pdf *gofpdf.Fpdf) *SFPDFText {
 }
 
 func (service *SFPDFText) CreateSFPDFText(data interface{}) error {
-	coord := Coordinates{}
-	d := data.(TextCfg)
+	coord := VarCoordinates{}
+	d := data.(VarTextCfg)
 
-	alignCfg := AlignmentCfg{
+	alignCfg := VarAlignmentCfg{
 		Margin: d.Margin,
 	}
 
