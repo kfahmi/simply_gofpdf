@@ -17,22 +17,9 @@ type Init struct {
 	sFPDFText      logics.ISPDFText
 }
 
-// func main() {
-// 	rootdir, _ := os.Getwd()
-// 	fontPath := path.Join(rootdir, "font")
-// 	pdf := &Init{
-// 		Width:          800,
-// 		Heigth:         800,
-// 		OrientationStr: "P",
-// 		UnitStr:        "mm",
-// 		FontPath:       fontPath,
-// 	}
-// 	pdf.InitSPDFDoc()
-// }
-
 //start docs init function sgofpdf
 func (init *Init) InitSPDFDoc() error {
-	fmt.Println("HELLOW")
+	fmt.Println("initiate InitSPDFDoc()")
 	init.PdfObj = gofpdf.NewCustom(&gofpdf.InitType{
 		OrientationStr: init.OrientationStr,
 		UnitStr:        init.UnitStr,
