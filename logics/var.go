@@ -24,3 +24,9 @@ type VarTextCfg struct {
 type VarAlignmentCfg struct {
 	Margin float64
 }
+
+type VarDataGrid struct {
+	Row    int
+	Col    int
+	Header bool
+}
