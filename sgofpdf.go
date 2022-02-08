@@ -46,3 +46,11 @@ func (init *Init) WriteText(data interface{}) error {
 	init.sFPDFText.CreateSFPDFText(data)
 	return nil
 }
+
+func (init *Init) RenderImage(data interface{}) error {
+	return nil
+}
+
+func (init *Init) DrawGrid(data interface{}) error {
+	return nil
+}
