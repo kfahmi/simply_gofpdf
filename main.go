@@ -1,11 +1,10 @@
-package sgofpdf
+package main
 
 import (
 	"fmt"
 
-	"gitlab.com/kfahmi/simple-gofpdf/logics"
-
 	"github.com/jung-kurt/gofpdf"
+	"github.com/kfahmi/simply_gofpdf/logics"
 )
 
 type Init struct {
@@ -13,18 +12,27 @@ type Init struct {
 	Heigth         float64
 	OrientationStr string
 	UnitStr        string
-	FontDirStr     string
 	PdfObj         *gofpdf.Fpdf
 	FontPath       string
 	sFPDFText      logics.ISPDFText
 }
 
-func main() {
-	fmt.Println("Hello, World!")
-}
+// func main() {
+// 	rootdir, _ := os.Getwd()
+// 	fontPath := path.Join(rootdir, "font")
+// 	pdf := &Init{
+// 		Width:          800,
+// 		Heigth:         800,
+// 		OrientationStr: "P",
+// 		UnitStr:        "mm",
+// 		FontPath:       fontPath,
+// 	}
+// 	pdf.InitSPDFDoc()
+// }
 
 //start docs init function sgofpdf
 func (init *Init) InitSPDFDoc() error {
+	fmt.Println("HELLOW")
 	init.PdfObj = gofpdf.NewCustom(&gofpdf.InitType{
 		OrientationStr: init.OrientationStr,
 		UnitStr:        init.UnitStr,
