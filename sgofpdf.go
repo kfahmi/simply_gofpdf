@@ -19,6 +19,10 @@ type Init struct {
 	sFPDFText      logics.ISPDFText
 }
 
+func (init *Init) Test() {
+	fmt.Println("TestFunction")
+}
+
 //start docs init function sgofpdf
 func (init *Init) InitSPDFDoc() error {
 	fmt.Println("initiate InitSPDFDoc()")
