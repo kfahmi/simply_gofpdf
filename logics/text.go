@@ -13,7 +13,7 @@ type ISPDFText interface {
 }
 
 func InitSFPDFText(pdf *gofpdf.Fpdf) *SFPDFText {
-	align := InitAlignment()
+	align := InitAlignment(pdf)
 	service := SFPDFText{
 		pdfObj:    pdf,
 		alignment: align,
@@ -22,16 +22,24 @@ func InitSFPDFText(pdf *gofpdf.Fpdf) *SFPDFText {
 }
 
 func (service *SFPDFText) CreateSFPDFText(data interface{}) error {
-	coord := VarCoordinates{}
-	d := data.(VarTextCfg)
-
-	alignCfg := VarAlignmentCfg{
-		Margin: d.Margin,
-	}
-
+	coord := &VarCoordinates{}
+	d := data.(*VarTextCfg)
 	//FONT TEXT
 	service.pdfObj.SetFont(d.FontFamily, d.FontStyle, d.FontSize)
 	service.pdfObj.SetTextColor(d.Color.R, d.Color.G, d.Color.B)
+
+	cWidth, cHeigth := service.pdfObj.GetPageSize()
+
+	textWidth := service.pdfObj.GetStringWidth(d.Text)
+	_, textHeight := service.pdfObj.GetFontSize()
+
+	alignCfg := &VarAlignmentCfg{
+		Margin:          d.Margin,
+		TextWidth:       textWidth,
+		TextHeight:      textHeight,
+		ContainerWidth:  cWidth,
+		ContainerHeigth: cHeigth,
+	}
 
 	//Alignment Text
 	switch d.Alignment {

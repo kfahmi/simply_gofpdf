@@ -22,7 +22,11 @@ type VarTextCfg struct {
 }
 
 type VarAlignmentCfg struct {
-	Margin float64
+	Margin          float64
+	TextWidth       float64
+	TextHeight      float64
+	ContainerWidth  float64
+	ContainerHeigth float64
 }
 
 type VarDataGrid struct {

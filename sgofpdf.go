@@ -2,8 +2,7 @@ package sgofpdf
 
 import (
 	"fmt"
-	"os"
-	"path"
+	"strings"
 
 	"github.com/jung-kurt/gofpdf"
 	"github.com/kfahmi/simply_gofpdf/logics"
@@ -26,8 +25,6 @@ func (init *Init) Test() {
 //start docs init function sgofpdf
 func (init *Init) InitSPDFDoc() error {
 	fmt.Println("initiate InitSPDFDoc()")
-	rootdir, _ := os.Getwd()
-	init.FontPath = path.Join(rootdir, "font")
 	init.PdfObj = gofpdf.NewCustom(&gofpdf.InitType{
 		OrientationStr: init.OrientationStr,
 		UnitStr:        init.UnitStr,
@@ -39,22 +36,51 @@ func (init *Init) InitSPDFDoc() error {
 }
 
 // Other Function
+func (init *Init) NewPage(ruller bool, rullerPartition float64) error {
+	init.PdfObj.AddPage()
+	if ruller {
+		init.PdfObj = init.DrawGridRuller(rullerPartition)
+	}
+	return nil
+}
+
+func (init *Init) DrawGridRuller(partition float64) *gofpdf.Fpdf {
+	pdf := init.PdfObj
+	w, h := pdf.GetPageSize()
+	pdf.SetFont("courier", "", 36)
+	pdf.SetTextColor(80, 80, 80)
+	pdf.SetDrawColor(200, 200, 200)
+	for x := 0.0; x < w; x = x + (w / partition) {
+		pdf.Line(x, 0, x, h)
+		_, lineHt := pdf.GetFontSize()
+		pdf.Text(x, lineHt, fmt.Sprintf("%d", int(x)))
+	}
+	for y := 0.0; y < h; y = y + (w / partition) {
+		pdf.Line(0, y, w, y)
+		pdf.Text(0, y, fmt.Sprintf("%d", int(y)))
+	}
+	return pdf
+}
+
 func (init *Init) RegisterFont(fontList []string) error {
 	for _, fontType := range fontList {
-		init.PdfObj.AddUTF8Font(fontType, "", fontType)
+		lower := strings.ToLower(fontType)
+		registerName := strings.Split(lower, ".")[0]
+		init.PdfObj.AddUTF8Font(registerName, "", fontType)
 	}
 	return nil
 }
 
 func (init *Init) WriteText(data interface{}) error {
-	init.sFPDFText.CreateSFPDFText(data)
-	return nil
+	err := init.sFPDFText.CreateSFPDFText(data)
+	return err
 }
 
 func (init *Init) RenderImage(data interface{}) error {
 	return nil
 }
 
-func (init *Init) DrawGrid(data interface{}) error {
-	return nil
+func (init *Init) GeneratePDF(path string) error {
+	err := init.PdfObj.OutputFileAndClose(path)
+	return err
 }
