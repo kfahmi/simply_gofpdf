@@ -1,5 +1,9 @@
 package logics
 
+type VarPageCfg struct {
+	RullerPartition float64
+}
+
 type VarCoordinates struct {
 	x float64
 	y float64

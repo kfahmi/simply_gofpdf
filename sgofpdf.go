@@ -36,10 +36,10 @@ func (init *Init) InitSPDFDoc() error {
 }
 
 // Other Function
-func (init *Init) NewPage(ruller bool, rullerPartition float64) error {
+func (init *Init) NewPage(cfg *logics.VarPageCfg) error {
 	init.PdfObj.AddPage()
-	if ruller {
-		init.PdfObj = init.DrawGridRuller(rullerPartition)
+	if cfg.RullerPartition > 0 {
+		init.PdfObj = init.DrawGridRuller(cfg.RullerPartition)
 	}
 	return nil
 }

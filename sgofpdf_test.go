@@ -31,7 +31,10 @@ func TestCreateFile(t *testing.T) {
 	simplypdf.RegisterFont(fontList)
 
 	//page1
-	simplypdf.NewPage(true, 10)
+	pageCfg := &sgofpdf_logics.VarPageCfg{
+		RullerPartition: 20,
+	}
+	simplypdf.NewPage(pageCfg)
 	data := &sgofpdf_logics.VarTextCfg{
 		Alignment:  "left",
 		Text:       "SimpyGofpdf by Kfahmi",
@@ -48,7 +51,10 @@ func TestCreateFile(t *testing.T) {
 	simplypdf.WriteText(data)
 
 	//page3
-	simplypdf.NewPage(true, 20)
+	pageCfg = &sgofpdf_logics.VarPageCfg{
+		RullerPartition: 10,
+	}
+	simplypdf.NewPage(pageCfg)
 	data = &sgofpdf_logics.VarTextCfg{
 		Alignment:  "center",
 		Text:       "SimpyGofpdf by Kfahmi",
